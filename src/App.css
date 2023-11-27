@@ -1,0 +1,17 @@
+body {
+  width: max-width;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.monthCalender {
+  max-height: calc(100vh - 70px);
+}
