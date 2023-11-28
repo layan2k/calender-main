@@ -34,7 +34,6 @@ for (let weekIndex = 0; weekIndex < weeksMatrix.length; weekIndex++) {
 return weeksMatrix;
 };
 
-import dayjs from 'dayjs';
 
 export const getHoursMatrix = (month = dayjs().month()) => {
 const dayMatrix = getDayMatrix(month);
