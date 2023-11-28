@@ -35,12 +35,11 @@ const SmallCalender = () => {
     }
 
     const getMonthClass = (day) => {
-        const format = "MM"
-        const nowMonth = dayjs().format(format)
-        const currMonth = day.format(format)
+        const nowMonth = dayjs().format()
+        const currMonth = day.format()
 
 
-        return nowMonth === currMonth ? 'text-black' : 'text-gray-300'
+        return nowMonth <= currMonth  ? 'text-black' : 'text-gray-500'
     }
 return (
     <div className='mt-9 '>

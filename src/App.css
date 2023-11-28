@@ -15,3 +15,8 @@ body {
 .monthCalender {
   max-height: calc(100vh - 70px);
 }
+
+.DayBox {
+      background: hsla(0,0%,92%,.1);
+      transition: all .3s ease-in-out;
+}

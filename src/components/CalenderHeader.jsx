@@ -40,15 +40,15 @@ return (
 
         <div className='flex items-center justify-center gap-4'>
         <button onClick={handlePrevMonth} className='flex items-center justify-center border rounded p-3'>
-            <span className='cursor-pointer text-gray-600 '>
+            <span className='cursor-pointer text-black '>
                 <AiOutlineLeft />
             </span>
         </button>
         <div className="flex items-center justify-center border rounded px-3 py-2">
-        <h2 className=' text-base text-gray-500 font-bold'>{dayjs(new Date(dayjs().year(), monthIndex)).format(" MMMM YYYY") }</h2>
+        <h2 className=' text-base text-black font-base'>{dayjs(new Date(dayjs().year(), monthIndex)).format(" MMMM YYYY") }</h2>
         </div>
         <button onClick={handleNextMonth} className='flex items-center justify-center border rounded p-3'>
-            <span className='cursor-pointer text-gray-600'>
+            <span className='cursor-pointer text-black'>
                 <AiOutlineRight />
             </span>
         </button>
