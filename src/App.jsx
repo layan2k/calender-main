@@ -9,11 +9,13 @@ import React from 'react'
 import GlobalContext from './context/GlobalContext'
 import EventModal from './components/EventModal'
 import AddButton from './components/AddButton'
+import Week from './components/Week'
 
 
 function App() {
   const [currentMonth, setCurrentMonth] = useState(getMonth())
   const { monthIndex, showEventModal, showSideCalender } = useContext(GlobalContext)
+
 
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
@@ -29,7 +31,8 @@ function App() {
           {showSideCalender &&
             <Sidebar />
           }
-          <Month month = {currentMonth} />
+          {/* <Month month = {currentMonth} /> */}
+          <Week />
         </div>
         <AddButton />
       </div>

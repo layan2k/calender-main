@@ -7,6 +7,7 @@ import { useState } from 'react';
 const CalenderHeader = () => {
     const { monthIndex, setMonthIndex, setDaySelected,showSideCalender, setShowSideCalender  } = useContext(GlobalContext)
     const [searchValue, setSearchValue] = useState("")
+
     const handlePrevMonth = () => {
         setMonthIndex(monthIndex - 1 )
     }
@@ -26,14 +27,13 @@ const CalenderHeader = () => {
     }, [showSideCalender])
 
 
-
 return (
     <header className="px-4 py-3 flex items-center justify-between">
         <div className="flex items-center justify-center">
         <div className=' cursor-pointer rounded py-2 px-3 mr-5 text-3xl' onClick={handleSideCalender}>
             {showSideCalender ? <AiOutlineMenuFold/> : <AiOutlineMenuUnfold />}
         </div>
-        <div className="flex items-center justify-center mr-5 border p-2 gap-8 ">Month <AiOutlineDown /></div>
+        <div className="flex items-center justify-center mr-5 border p-2 gap-12 ">Month <AiOutlineDown /></div>
         <button className="border rounded py-2 px-4 mr-5" onClick={handleReset}>Today</button>
         </div>
 
