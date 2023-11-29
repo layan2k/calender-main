@@ -14,7 +14,7 @@ export const getMonth = (month = dayjs().month()) => {
     return daysMatrix
 }
 
-export const getWeekHours = (startDate) => {
+export const getWeekHours = (startDate = dayjs().date()) => {
   // Initialize the 2D array to store the hours
 const weekHours = [];
 
@@ -57,27 +57,35 @@ for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
 return weekHours;
 };
 
-export const getHoursForDay = (targetDate) => {
-  // Convert the target date to a Day.js object
-const day = dayjs(targetDate);
 
-  // Initialize an empty array to store the hours
-const hours = [];
+export function getQuartoHourBlocks(selectedDate = dayjs().date()) {
 
-  // Iterate through each hour from 00:00 to 23:00
-for (let hour = 0; hour < 24; hour++) {
-    // Create a Day.js object for the current hour
-    const hourOfDay = day.hour(hour);
+const hoursArray = [];
 
-    // Format the hour as a string with two digits
-    const formattedHour = hourOfDay.format('HH');
+  // Start with the selected date at midnight
+const startDate = dayjs(selectedDate).startOf('day');
 
-    // Add the formatted hour to the array
-    hours.push(formattedHour);
+  // Loop through each hour
+    for (let i = 0; i < 24; i++) {
+    const currentHour = startDate.add(i, 'hours');
+    const hourArray = [];
+
+    // Loop through 4 intervals per hour (60 minutes / 15 minutes)
+    for (let j = 0; j < 4; j++) {
+      const currentInterval = currentHour.add(j * 15, 'minutes');
+    const formattedInterval = currentInterval.format('HH:mm');
+    hourArray.push(formattedInterval);
+    }
+
+    // Add the array for the current hour to the main array
+    hoursArray.push(hourArray);
 }
 
-return hours;
-};
+    return hoursArray;
+}
+
+
+
 
 
 export const getWeekOfMonth = (selectedDate) => {
@@ -85,3 +93,4 @@ export const getWeekOfMonth = (selectedDate) => {
     const diffInDays = selectedDate.diff(startOfMonth, 'day')
     return Math.ceil((diffInDays + startOfMonth.day()) / 7)
 }
+
