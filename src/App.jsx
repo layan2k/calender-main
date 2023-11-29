@@ -10,6 +10,7 @@ import GlobalContext from './context/GlobalContext'
 import EventModal from './components/EventModal'
 import AddButton from './components/AddButton'
 import Week from './components/Week'
+import DayCalender from './components/DayCalender'
 
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
             <Sidebar />
           }
           {/* <Month month = {currentMonth} /> */}
-          <Week />
+          {/* <Week /> */}
+          <DayCalender />
         </div>
         <AddButton />
       </div>

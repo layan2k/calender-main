@@ -28,7 +28,7 @@ const CalenderHeader = () => {
 
 
 return (
-    <header className="px-4 py-3 flex items-center justify-between">
+    <header className="px-4 py-3 flex items-center justify-between border shadow-md border-b-gray-200">
         <div className="flex items-center justify-center">
         <div className=' cursor-pointer rounded py-2 px-3 mr-5 text-3xl' onClick={handleSideCalender}>
             {showSideCalender ? <AiOutlineMenuFold/> : <AiOutlineMenuUnfold />}

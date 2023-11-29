@@ -10,6 +10,7 @@ body {
   scroll-behavior: smooth;
   height: 100vh;
   overflow: hidden;
+  user-select: none;
 }
 
 .monthCalender {
