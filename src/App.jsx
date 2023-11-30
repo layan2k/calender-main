@@ -15,7 +15,7 @@ import DayCalender from './components/DayCalender'
 
 function App() {
   const [currentMonth, setCurrentMonth] = useState(getMonth())
-  const { monthIndex, showEventModal, showSideCalender } = useContext(GlobalContext)
+  const { monthIndex, showEventModal, showSideCalender, viewCalender } = useContext(GlobalContext)
 
 
   useEffect(() => {
@@ -32,9 +32,8 @@ function App() {
           {showSideCalender &&
             <Sidebar />
           }
-          {/* <Month month = {currentMonth} /> */}
-          {/* <Week /> */}
-          <DayCalender />
+          {viewCalender === "day"? <DayCalender /> : (viewCalender === "week"? <Week /> : <Month month = {currentMonth} />) }
+
         </div>
         <AddButton />
       </div>

@@ -1,13 +1,19 @@
-import { useState } from "react"
-import { getQuartoHourBlocks, getWeekHours } from "../util"
+import { useState , useContext, useEffect} from "react"
+import { getHourBlocks, getQuartoHourBlocks } from "../util"
 import HourDay from "./HourDay"
+import GlobalContext from "../context/GlobalContext"
 
 
 const DayCalender = () => {
+    const {daySelected } = useContext(GlobalContext)
     const [currentHours, setCurrentHours] = useState(getQuartoHourBlocks())
-    const [currentStartDate, setCurrentStartDate] = useState(getWeekHours())
+    const [currentStartDate, setCurrentStartDate] = useState(getHourBlocks())
+    useEffect(() => {
+        setCurrentHours(getQuartoHourBlocks(daySelected))
+        setCurrentStartDate(getHourBlocks(daySelected))
+        },[daySelected])
     return (
-        <div className="flex flex-1 overflow-y-scroll ">
+        <div className="flex flex-1 overflow-y-scroll mt-0.5">
             {/* left */}
             <div className="">
                 {/*Side Bar With hours  */}
@@ -28,14 +34,15 @@ const DayCalender = () => {
 
             {/* Right */}
             {/* Hours In a Day */}
-            <div className="grid grid-cols-7 grid-rows-96 flex-1" >
+            <div className="grid grid-cols-1 grid-rows-96 flex-1" >
                 {currentStartDate.map((week, ind) => (
                     <div key={ind}>
-                        {week.map((hour, idl) => (
+                        <HourDay hour={week} />
+                        {/* {week.map((hour, idl) => (
                             <span key={idl}>
-                                <HourDay hour={hour} />
+
                             </span>
-                        ))}
+                        ))} */}
                     </div>
                 ))}
             </div>

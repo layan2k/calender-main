@@ -16,6 +16,11 @@ const Week = () => {
     setCurrentMonth(getMonth(monthIndex))
   }, [monthIndex]);
 
+  useEffect(() => {
+    setCurrentStartDate(getWeekHours(daySelected))
+    setCurrentHours(getQuartoHourBlocks(daySelected))
+  },[daySelected])
+
   const ourDaySelectedWeek = getWeekOfMonth(daySelected) - 1
 
 
@@ -40,7 +45,7 @@ const Week = () => {
           <div className='flex flex-col'>
             <div className='grid grid-cols-1 grid-rows-96 '>
               {currentHours.map((item, kee) => (
-                <div className="grid grid-cols-1 grid-rows-4 h-36 " key={kee}>
+                <div className="grid grid-cols-1 grid-rows-4 h-32 " key={kee}>
                   {item.map((hrs, kd) => (
                     <div className={`flex justify-center items-start cursor-pointer text-xs px-3 font-semibold text-black `} key={kd} >
                       {kd === 0 ? hrs : " "}

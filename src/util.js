@@ -86,19 +86,26 @@ export function getQuartoHourBlocks(selectedDate = dayjs().startOf('day')) {
 
 export function getHourBlocks(selectedDate = dayjs().startOf('day')) {
     const hoursArray = [];
-    // Loop through each hour for a single day (24 hours)
-    for (let i = 0; i < 24; i++) {
-        const currentHour = selectedDate.add(i, 'hours');
 
-        // Use map to generate 4 intervals per hour (15 minutes each)
-        const hourArray = Array.from({ length: 4 }, (_, j) => {
+    // Start with the selected date at midnight
+    const startDate = dayjs(selectedDate).startOf('day');
+
+    // Loop through each hour of the selected day
+    for (let i = 0; i < 24; i++) {
+        const currentHour = startDate.add(i, 'hours');
+        const hourArray = [];
+
+        // Loop through 4 intervals per hour (60 minutes / 15 minutes)
+        for (let j = 0; j < 4; j++) {
             const currentInterval = currentHour.add(j * 15, 'minutes');
-            return currentInterval.format('h A');
-        });
+            const formattedInterval = currentInterval.format('h A');
+            hourArray.push(formattedInterval);
+        }
 
         // Add the array for the current hour to the main array
         hoursArray.push(hourArray);
     }
+
     return hoursArray;
 }
 
