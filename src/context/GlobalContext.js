@@ -12,7 +12,7 @@ const GlobalContext = React.createContext({
     setShowEventModal: () => { },
     showSideCalender: true,
     setShowSideCalender: () => { },
-    viewCalender: 'week',
+    viewCalender: 'Day',
     setViewCalender: (calender)=>{ },
 })
 export default GlobalContext

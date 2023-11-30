@@ -1,18 +1,17 @@
 import { useContext, useEffect } from 'react'
-import GlobalContext from '../context/GlobalContext'
+import GlobalContext from '../../context/GlobalContext'
 import dayjs from 'dayjs'
-import { AiOutlineBell, AiOutlineDown, AiOutlineLeft, AiOutlineMenuFold, AiOutlineMenuUnfold, AiOutlineRight, AiOutlineSearch, AiOutlineSetting,  } from "react-icons/ai";
+import { AiOutlineBell, AiOutlineLeft, AiOutlineMenuFold, AiOutlineMenuUnfold, AiOutlineRight, AiOutlineSearch, AiOutlineSetting,  } from "react-icons/ai";
 import { useState } from 'react';
+import CalenderDropDown from './CalenderDropDown';
+import { Button} from 'antd'
 
 const CalenderHeader = () => {
     const { monthIndex, setMonthIndex, setDaySelected,showSideCalender, setShowSideCalender  } = useContext(GlobalContext)
     const [searchValue, setSearchValue] = useState("")
 
-    const handlePrevMonth = () => {
-        setMonthIndex(monthIndex - 1 )
-    }
-    const handleNextMonth = () => {
-        setMonthIndex(monthIndex + 1)
+    const handleNextPrevMonth = (actionValue) => {
+        setMonthIndex(monthIndex - actionValue )
     }
 
     const handleReset = () => {
@@ -27,31 +26,32 @@ const CalenderHeader = () => {
     }, [showSideCalender])
 
 
+
 return (
     <header className="px-4 py-3 flex items-center justify-between border shadow-md border-b-gray-200">
         <div className="flex items-center justify-center">
         <div className=' cursor-pointer rounded py-2 px-3 mr-5 text-3xl' onClick={handleSideCalender}>
             {showSideCalender ? <AiOutlineMenuFold/> : <AiOutlineMenuUnfold />}
-        </div>
-        <div className="flex items-center justify-center mr-5 border p-2 gap-12 ">Month <AiOutlineDown /></div>
-        <button className="border rounded py-2 px-4 mr-5" onClick={handleReset}>Today</button>
+            </div>
+                <CalenderDropDown />
+        <Button className=" py-2 px-4 mr-5" size="large" onClick={handleReset}>Today</Button>
         </div>
 
 
         <div className='flex items-center justify-center gap-4'>
-        <button onClick={handlePrevMonth} className='flex items-center justify-center border rounded p-3'>
+        <Button size='large' onClick={()=>handleNextPrevMonth(1 * -1)} className='flex items-center justify-center border rounded p-3'>
             <span className='cursor-pointer text-black '>
                 <AiOutlineLeft />
             </span>
-        </button>
-        <div className="flex items-center justify-center border rounded px-3 py-2">
+        </Button>
+        <div className="flex items-center justify-center border rounded w-48  px-3 py-2">
         <h2 className=' text-base text-black font-base'>{dayjs(new Date(dayjs().year(), monthIndex)).format(" MMMM YYYY") }</h2>
         </div>
-        <button onClick={handleNextMonth} className='flex items-center justify-center border rounded p-3'>
+        <Button size='large' onClick={()=>handleNextPrevMonth(1)} className='flex items-center justify-center border rounded p-3'>
             <span className='cursor-pointer text-black'>
                 <AiOutlineRight />
             </span>
-        </button>
+        </Button>
         </div>
 
 

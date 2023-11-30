@@ -11,7 +11,7 @@ const ContextWrapper = (props) => {
     const [daySelected, setDaySelected] = useState(dayjs());
     const [showEventModal, setShowEventModal] = useState(false);
     const [showSideCalender, setShowSideCalender] = useState(true);
-    const [viewCalender, setViewCalender] = useState('week')
+    const [viewCalender, setViewCalender] = useState('Day')
 
     useEffect(() => {
         if (smallCalendarMonth !== null) {

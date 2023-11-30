@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import React, { useState, useEffect, useContext } from 'react'
-import { getMonth } from '../util'
-import GlobalContext from '../context/GlobalContext'
+import { getMonth } from '../../util'
+import GlobalContext from '../../context/GlobalContext'
 import { AiOutlineLeft, AiOutlineRight,  } from "react-icons/ai";
 
 const SmallCalender = () => {

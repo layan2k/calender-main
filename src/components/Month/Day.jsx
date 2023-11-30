@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import GlobalContext from '../context/GlobalContext';
+import GlobalContext from '../../context/GlobalContext';
 
 
 

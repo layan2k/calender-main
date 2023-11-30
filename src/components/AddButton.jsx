@@ -1,15 +1,6 @@
-import { AiOutlinePlus } from "react-icons/ai"
+import React from 'react';
+import {PlusOutlined} from '@ant-design/icons'
+import { FloatButton } from 'antd';
 
-const cssstyle = {
-  background : "#2A2C32"
-}
-
-const AddButton = () => {
-  return (
-    <div className="text-3xl fixed text-white  border p-3 cursor-pointer shadow-lg rounded-full bottom-5 right-5" style={cssstyle}>
-      <AiOutlinePlus />
-    </div>
-  )
-}
-
-export default AddButton
+const App = () => <FloatButton className='text-3xl text-white' icon={<PlusOutlined />} onClick={() => console.log('click')} />;
+export default App;

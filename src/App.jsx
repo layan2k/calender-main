@@ -1,16 +1,16 @@
 
 import './App.css'
 import { getMonth } from "./util"
-import Month from './components/Month'
-import Sidebar from './components/Sidebar'
-import CalenderHeader from './components/CalenderHeader'
 import { useState, useContext , useEffect} from 'react'
 import React from 'react'
 import GlobalContext from './context/GlobalContext'
 import EventModal from './components/EventModal'
 import AddButton from './components/AddButton'
-import Week from './components/Week'
-import DayCalender from './components/DayCalender'
+import CalenderHeader from './components/Header/CalenderHeader'
+import Sidebar from './components/Sidebar/Sidebar'
+import DayCalender from './components/Day/DayCalender'
+import Week from './components/Week/Week'
+import Month from './components/Month/Month'
 
 
 function App() {
@@ -32,8 +32,7 @@ function App() {
           {showSideCalender &&
             <Sidebar />
           }
-          {viewCalender === "day"? <DayCalender /> : (viewCalender === "week"? <Week /> : <Month month = {currentMonth} />) }
-
+          {viewCalender === "Day"? <DayCalender /> : (viewCalender === "Week"? <Week /> : <Month month = {currentMonth} />) }
         </div>
         <AddButton />
       </div>

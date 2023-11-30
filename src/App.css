@@ -21,3 +21,9 @@ body {
       background: hsla(0,0%,92%,.1);
       transition: all .3s ease-in-out;
 }
+
+.custom-select {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 30px;
+}
