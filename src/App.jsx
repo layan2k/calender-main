@@ -1,16 +1,17 @@
 
 import './App.css'
 import { getMonth } from "./util"
-import { useState, useContext , useEffect} from 'react'
-import React from 'react'
+import { useState, useContext, useEffect } from 'react'
+import React, { lazy, Suspense } from 'react'
 import GlobalContext from './context/GlobalContext'
 import EventModal from './components/EventModal'
 import AddButton from './components/AddButton'
 import CalenderHeader from './components/Header/CalenderHeader'
 import Sidebar from './components/Sidebar/Sidebar'
-import DayCalender from './components/Day/DayCalender'
-import Week from './components/Week/Week'
-import Month from './components/Month/Month'
+import Loading from './components/Loading'
+const DayCalender = lazy(() => import('./components/Day/DayCalender'))
+const Week = lazy(() => import('./components/Week/Week'))
+const Month = lazy(() => import('./components/Month/Month'))
 
 
 function App() {
@@ -32,7 +33,9 @@ function App() {
           {showSideCalender &&
             <Sidebar />
           }
-          {viewCalender === "Day"? <DayCalender /> : (viewCalender === "Week"? <Week /> : <Month month = {currentMonth} />) }
+          <Suspense fallback={<Loading />}>
+            {viewCalender === "Day" ? <DayCalender /> : (viewCalender === "Week" ? <Week /> : <Month month={currentMonth} />)}
+          </Suspense>
         </div>
         <AddButton />
       </div>
