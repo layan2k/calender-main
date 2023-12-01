@@ -26,11 +26,10 @@ const Week = () => {
 
         <div>
           {/* Header with Weekdays */}
-          <div className="grid grid-cols-7 grid-rows-1 py-4 border border-l-0 border-b-0 shadow-md">
+          <div className="grid grid-cols-7 grid-rows-1 py-4 border border-l-0 border-b-0 shadow-md pl-16">
             {currentMonth.map((day, i) => (
               <span key={i} className='text-sm text-center flex items-center justify-center h-4'>
                 {day}
-
               </span>
             ))}
           </div>
@@ -65,7 +64,6 @@ const Week = () => {
               </div>
             ))}
           </div>
-
         </div>
 
 

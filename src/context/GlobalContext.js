@@ -13,6 +13,8 @@ const GlobalContext = React.createContext({
     showSideCalender: true,
     setShowSideCalender: () => { },
     viewCalender: 'Day',
-    setViewCalender: (calender)=>{ },
+    setViewCalender: (calender) => { },
+    dispatchCalEvent: ({type, payload}) => { }
+
 })
 export default GlobalContext
