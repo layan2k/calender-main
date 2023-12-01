@@ -1,8 +1,11 @@
 // No logic implemented
 
+import { useContext } from "react"
+import GlobalContext from "../../context/GlobalContext"
 
 const JumpByWeek = () => {
 
+    const {setDaySelected, daySelected} = useContext(GlobalContext)
 
     const numberItems = [1, 2, 3, 4, 5, 6,]
     const checkIfLast = (index) => {
@@ -10,7 +13,7 @@ const JumpByWeek = () => {
     }
 
     const jumpByMuch = (numberOfWeeks) => {
-        return numberOfWeeks
+        setDaySelected(daySelected.add(numberOfWeeks, 'weeks'))
     }
 
 return (
@@ -25,7 +28,7 @@ return (
         </div>
         <div className='flex items-center justify-center mt-5 gap-1'>
             {numberItems.map((item, idxn) => (
-                <div className={`p-1 flex items-center justify-center text-sm cursor-pointer ${checkIfLast(idxn) ? 'border-r-2' : " "}`} key={idxn} onClick={() => {jumpByMuch(item *-1) }}>
+                <div className={`p-1 flex items-center justify-center text-sm cursor-pointer ${checkIfLast(idxn) ? 'border-r-2' : " "}`} key={idxn} onClick={() => {jumpByMuch(-item) }}>
                     <span>- {item}</span>
                 </div>
             ))}

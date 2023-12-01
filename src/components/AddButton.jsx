@@ -1,4 +1,3 @@
-import React from 'react';
 import {PlusOutlined} from '@ant-design/icons'
 import { FloatButton } from 'antd';
 
