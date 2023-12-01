@@ -1,10 +1,12 @@
 import { useContext, useEffect } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 import dayjs from 'dayjs'
-import { AiOutlineBell, AiOutlineLeft, AiOutlineMenuFold, AiOutlineMenuUnfold, AiOutlineRight, AiOutlineSearch, AiOutlineSetting, } from "react-icons/ai";
+import { AiOutlineBell, AiOutlineLeft, AiOutlineMenuFold, AiOutlineMenuUnfold, AiOutlineRight, AiOutlineSearch } from "react-icons/ai";
+import {SettingOutlined } from '@ant-design/icons'
 import { useState } from 'react';
 import CalenderDropDown from './CalenderDropDown';
 import { Button } from 'antd'
+import { getFirstAndLastDay } from '../../util';
 
 const CalenderHeader = () => {
     const { monthIndex, setMonthIndex, setDaySelected, showSideCalender, setShowSideCalender, viewCalender, daySelected } = useContext(GlobalContext)
@@ -12,7 +14,8 @@ const CalenderHeader = () => {
     const [currentDay, setCurrentDay] = useState(daySelected.date())
 
     const getDaysInMonth = (monthIndex) => {
-        const date = dayjs(`2023-${monthIndex}-01`);
+        const currentSelectedYear = daySelected.format('YYYY')
+        const date = dayjs(`${currentSelectedYear}-${monthIndex}-01`);
         return date.daysInMonth();
     };
 
@@ -24,7 +27,10 @@ const CalenderHeader = () => {
             setDaySelected(daySelected.add(actionValue, 'day'))
         }
         else if (viewCalender === "Month") {
-            setMonthIndex(monthIndex - actionValue)
+            setMonthIndex(monthIndex + actionValue)
+        }
+        else {
+            setDaySelected(daySelected.add(actionValue, 'weeks'))
         }
     }
 
@@ -42,6 +48,8 @@ const CalenderHeader = () => {
     useEffect(() => {
         setCurrentDay(daySelected.date())
     }, [daySelected])
+
+    const WeekDates =  getFirstAndLastDay(daySelected);
 
 
 
@@ -69,7 +77,7 @@ const CalenderHeader = () => {
                     (viewCalender === 'Week' ?
                         // Week
                         <div className="flex items-center justify-center border rounded w-48  px-3 py-2">
-                            <h2 className=' text-base text-black font-base'>{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</h2>
+                            <h2 className=' text-base text-black font-base'>{WeekDates.firstDayOfWeek + " - " + WeekDates.lastDayOfWeek}</h2>
                         </div>
                         :
                         // Day
@@ -90,7 +98,7 @@ const CalenderHeader = () => {
 
 
             <div className="flex justify-center items-center gap-4 text-3xl">
-                <div className=""><AiOutlineSetting /> </div>
+                <div className=""><SettingOutlined /> </div>
                 <div className=""><AiOutlineBell /></div>
                 <div name='searchBox' value={searchValue} onChange={(e) => setSearchValue(e)} type="text" className=" py-2 px-3 border rounded text-gray-400 bg-gray-200 text-lg flex items-center justify-center gap-2 cursor-pointer"> <AiOutlineSearch />  Search</div>
             </div>

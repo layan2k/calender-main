@@ -5,7 +5,7 @@ import GlobalContext from "../../context/GlobalContext"
 
 const JumpByWeek = () => {
 
-    const {setDaySelected, daySelected} = useContext(GlobalContext)
+    const { setDaySelected, daySelected } = useContext(GlobalContext)
 
     const numberItems = [1, 2, 3, 4, 5, 6,]
     const checkIfLast = (index) => {

@@ -1,4 +1,7 @@
 import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+dayjs.extend(isSameOrBefore);
+
 
 export const getMonth = (month = dayjs().month()) => {
     month = Math.floor(month)
@@ -18,8 +21,11 @@ export const getWeekHours = (startDate = dayjs().date()) => {
     // Initialize the 2D array to store the hours
     const weekHours = [];
 
-    // Set the starting date to the provided date
+    // Adjust the starting date to the previous Sunday if it's not already Sunday
     let currentDate = dayjs(startDate);
+    if (currentDate.weekday() !== 0) {
+        currentDate = currentDate.startOf('week');
+    }
 
     // Iterate through the week (7 days)
     for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
@@ -37,7 +43,7 @@ export const getWeekHours = (startDate = dayjs().date()) => {
                 const time = currentDate.hour(hourIndex).minute(intervalIndex * 15);
 
                 // Format the time as a string with two digits
-                const formattedTime = time.format('HH:mm');
+                const formattedTime = time.format('DD-MM-YYYY HH:mm');
 
                 // Add the formatted time to the interval array
                 hourIntervals.push(formattedTime);
@@ -98,7 +104,7 @@ export function getHourBlocks(selectedDate = dayjs().startOf('day')) {
         // Loop through 4 intervals per hour (60 minutes / 15 minutes)
         for (let j = 0; j < 4; j++) {
             const currentInterval = currentHour.add(j * 15, 'minutes');
-            const formattedInterval = currentInterval.format('h A');
+            const formattedInterval = currentInterval.format('DD-MM-YYYY HH:mm ');
             hourArray.push(formattedInterval);
         }
 
@@ -111,8 +117,36 @@ export function getHourBlocks(selectedDate = dayjs().startOf('day')) {
 
 
 export const getWeekOfMonth = (selectedDate) => {
-    const startOfMonth = selectedDate.startOf('month')
-    const diffInDays = selectedDate.diff(startOfMonth, 'day')
-    return Math.ceil((diffInDays + startOfMonth.day()) / 7)
+    const startOfMonth = selectedDate.startOf('month');
+    const diffInDays = selectedDate.diff(startOfMonth, 'day');
+    return Math.floor((diffInDays + startOfMonth.day()) / 7);
+};
+
+
+export const getFirstAndLastDay = (selectedDate) => {
+    // Convert the selected date to a Day.js object
+    const selectedDay = dayjs(selectedDate);
+
+    // Get the first day of the week (Sunday)
+    const firstDayOfWeek = selectedDay.startOf('week').format('D MMM');
+
+    // Get the last day of the week (Saturday)
+    const lastDayOfWeek = selectedDay.endOf('week').format('D MMM, YYYY');
+
+    // Return both dates in an object
+    return { firstDayOfWeek, lastDayOfWeek };
+}
+
+export const getWeekDays =(date = dayjs()) => {
+    const selectedDate = dayjs(date);
+    const firstDayOfWeek = selectedDate.startOf('week');
+    const lastDayOfWeek = selectedDate.endOf('week');
+    const days = [];
+
+    for (let currentDate = firstDayOfWeek; currentDate.isSameOrBefore(lastDayOfWeek); currentDate = currentDate.add(1, 'day')) {
+        days.push(currentDate.format('ddd D'));
+    }
+
+    return days;
 }
 

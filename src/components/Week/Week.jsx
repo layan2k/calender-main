@@ -1,27 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { getMonth, getQuartoHourBlocks, getWeekHours, getWeekOfMonth } from '../../util'
+import {  getQuartoHourBlocks, getWeekDays, getWeekHours } from '../../util'
 import { useContext } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 import { useEffect } from 'react'
 import Hour from './Hour'
 
 const Week = () => {
-  const { daySelected, monthIndex } = useContext(GlobalContext)
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
+  const { daySelected } = useContext(GlobalContext)
+  const [currentMonth, setCurrentMonth] = useState(getWeekDays())
   const [currentStartDate, setCurrentStartDate] = useState(getWeekHours())
   const [currentHours, setCurrentHours] = useState(getQuartoHourBlocks())
 
   useEffect(() => {
-    setCurrentMonth(getMonth(monthIndex))
-  }, [monthIndex]);
-
-  useEffect(() => {
     setCurrentStartDate(getWeekHours(daySelected))
     setCurrentHours(getQuartoHourBlocks(daySelected))
-  },[daySelected])
+    setCurrentMonth(getWeekDays(daySelected))
+  }, [daySelected])
 
-  const ourDaySelectedWeek = getWeekOfMonth(daySelected) - 1
 
 
   return (
@@ -31,9 +27,10 @@ const Week = () => {
         <div>
           {/* Header with Weekdays */}
           <div className="grid grid-cols-7 grid-rows-1 py-4 border border-l-0 border-b-0 shadow-md">
-            {currentMonth[ourDaySelectedWeek].map((day, i) => (
+            {currentMonth.map((day, i) => (
               <span key={i} className='text-sm text-center flex items-center justify-center h-4'>
-                {day.format("ddd D")}
+                {day}
+
               </span>
             ))}
           </div>

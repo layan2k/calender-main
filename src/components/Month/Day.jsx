@@ -41,6 +41,7 @@ return (
         <div className="flex-1 cursor-pointer" onClick={() => {
             setDaySelected(day)
             setShowEventModal(true)
+            {day}
         }}>
             {" "}
         </div>
