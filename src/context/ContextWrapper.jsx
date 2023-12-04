@@ -20,6 +20,10 @@ const initEvents = () => {
     const parsedEvents = storageEvents ? JSON.parse(storageEvents) : []
     return parsedEvents
 }
+const initView = () => {
+    const storageView = localStorage.getItem('calenderView')
+    return storageView ? JSON.parse(storageView) : 'Day'
+}
 
 const ContextWrapper = (props) => {
     const [monthIndex, setMonthIndex] = useState(dayjs().month());
@@ -27,12 +31,17 @@ const ContextWrapper = (props) => {
     const [daySelected, setDaySelected] = useState(dayjs());
     const [showEventModal, setShowEventModal] = useState(false);
     const [showSideCalender, setShowSideCalender] = useState(true);
-    const [viewCalender, setViewCalender] = useState('Day')
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [viewCalender, setViewCalender] = useState(initView())
     const [savedEvents, dispatchCalEvent] = useReducer(savedEventsReducer, [], initEvents)
 
     useEffect(() => {
         localStorage.setItem('savedEvents', JSON.stringify(savedEvents))
     }, [savedEvents])
+
+    useEffect(() => {
+        localStorage.setItem('calenderView', JSON.stringify(viewCalender))
+    },[viewCalender])
 
     useEffect(() => {
         if (smallCalendarMonth !== null) {
@@ -53,7 +62,11 @@ const ContextWrapper = (props) => {
             setShowSideCalender,
             viewCalender,
             setViewCalender,
-            dispatchCalEvent
+            dispatchCalEvent,
+            savedEvents,
+            selectedEvent,
+            setSelectedEvent,
+
 
         }}>
             {props.children}

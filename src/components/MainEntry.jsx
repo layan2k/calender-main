@@ -12,14 +12,18 @@ const Week = lazy(() => import('./Week/Week'))
 const Month = lazy(() => import('./Month/Month'))
 
 
-const MainEntry = ()=> {
+const MainEntry = () => {
     const [currentMonth, setCurrentMonth] = useState(getMonth())
-    const { monthIndex, showEventModal, showSideCalender, viewCalender } = useContext(GlobalContext)
+    const { monthIndex, showEventModal, showSideCalender, viewCalender, daySelected } = useContext(GlobalContext)
 
 
     useEffect(() => {
         setCurrentMonth(getMonth(monthIndex));
     }, [monthIndex, showSideCalender]);
+
+    useEffect(() => {
+        setCurrentMonth(getMonth(daySelected.month()))
+    }, [daySelected])
 
 
     return (
@@ -28,9 +32,11 @@ const MainEntry = ()=> {
             <div className="h-screen flex flex-col relative">
                 <CalenderHeader />
                 <div className="flex flex-1 monthCalender">
-                    {showSideCalender &&
-                        <Sidebar />
-                    }
+                    <div className="hiddenItemsSmallScreen">
+                        {showSideCalender &&
+                            <Sidebar />
+                        }
+                    </div>
                     <Suspense fallback={<Loading />}>
                         {viewCalender === "Day" ? <DayCalender /> : (viewCalender === "Week" ? <Week /> : <Month month={currentMonth} />)}
                     </Suspense>

@@ -49,6 +49,13 @@ const CalenderHeader = () => {
         setCurrentDay(daySelected.date())
     }, [daySelected])
 
+    useEffect(() => {
+        if (monthIndex !== daySelected.month()) {
+            setMonthIndex(daySelected.month())
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [daySelected]);
+
     const WeekDates =  getFirstAndLastDay(daySelected);
 
 
@@ -56,7 +63,7 @@ const CalenderHeader = () => {
     return (
         <header className="px-4 py-3 flex items-center justify-between border shadow-md border-b-gray-200">
             <div className="flex items-center justify-center">
-                <div className=' cursor-pointer rounded py-2 px-3 mr-5 text-3xl' onClick={handleSideCalender}>
+                <div className='hiddenItemsSmallScreen cursor-pointer rounded py-2 px-3 mr-5 text-3xl' onClick={handleSideCalender}>
                     {showSideCalender ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
                 </div>
                 <CalenderDropDown />
@@ -82,7 +89,7 @@ const CalenderHeader = () => {
                         :
                         // Day
                         <div className="flex items-center justify-center border rounded w-48  px-3 py-2">
-                            <h2 className=' text-base text-black font-base'>{daySelected.format('D MMMM YYYY')}</h2>
+                            <h2 className=' text-base text-black font-base'>{daySelected.format('D MMMM, YYYY')}</h2>
                         </div>
 
 

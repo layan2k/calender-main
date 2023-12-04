@@ -1,6 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@screen sm {
+  .hiddenItemsSmallScreen {
+    display: none;
+  }
+}
+@screen lg {
+  .hiddenItemsSmallScreen {
+    display: flex;
+  }
+}
+
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;

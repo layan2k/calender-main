@@ -8,10 +8,11 @@ const MainEntry = lazy(()=> import('./components/MainEntry'))
 
 const App = () => {
   return (
-    <Suspense fallback={LoadingFull}>
+    <div>
+    <Suspense fallback={<LoadingFull/>}>
       <MainEntry />
-
     </Suspense>
+    </div>
   )
 }
 
