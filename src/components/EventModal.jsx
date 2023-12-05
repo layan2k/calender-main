@@ -26,6 +26,13 @@ const EventModal = () => {
             lableClasses[0]
     );
 
+    const [selectedTime, setSelectedTime] = useState(daySelected.set('hour', 9).set('minute', 15)); // Initial state
+
+    const handleChange = (time) => {
+        setSelectedTime(time);
+    };
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -33,7 +40,8 @@ const EventModal = () => {
             title,
             description,
             label: selectedLabel,
-            day: daySelected.set('hour', 9).set('minute', 15).valueOf(),
+            day: daySelected.valueOf(),
+            time: selectedTime,
             id: selectedEvent ? selectedEvent.id : Date.now()
         }
         if (selectedEvent) {
@@ -91,7 +99,7 @@ const EventModal = () => {
                             value={title} onChange={(e) => setTitle(e.target.value)
                             } />
                         {/* Left Clock */}
-                        <span  className='text-gray-400'>
+                        <span className='text-gray-400'>
                             <AiOutlineClockCircle />
                         </span>
                         {/* Date Selected + Time Picker */}
@@ -100,6 +108,8 @@ const EventModal = () => {
                             <TimePicker
                                 format="HH:mm"
                                 minuteStep={15}
+                                value={selectedTime}
+                                onChange={handleChange}
                             />
                         </div>
                         <span className='text-gray-400'>

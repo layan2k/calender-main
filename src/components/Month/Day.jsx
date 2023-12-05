@@ -57,7 +57,8 @@ const Day = ({ day }) => {
             }}>
                 {dayEvents.map((evt, idx) => (
                     <div key={idx}
-                        className={`bg-${evt.label}-200 p-1 mr-3 text-gray-500 text-sm rounded mb-1 truncate`}
+                        className=" p-1 mr-3 text-gray-500 text-sm rounded mb-1 truncate"
+                        style={{backgroundColor: evt.label}}
                         onClick={()=> setSelectedEvent(evt)}
                     >
                         {evt.title}
