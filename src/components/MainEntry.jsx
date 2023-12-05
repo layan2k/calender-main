@@ -26,23 +26,18 @@ const MainEntry = () => {
         setCurrentMonth(getMonth(daySelected.month()))
     }, [daySelected])
 
-    const checkScreen = () => {
-        const screenWidth = window.innerWidth
-        return screenWidth <= 480
-    }
-
-    const isSmallScreen = checkScreen();
 
 
     return (
         <React.Fragment>
             {showEventModal && <EventModal />}
             <div className="h-screen flex flex-col relative">
-                {isSmallScreen && <MobileMenu />}
+                <div className="mobileScreenView ">
+                <MobileMenu />
+                </div>
                 <CalenderHeader />
-
                 <div className="flex flex-1 monthCalender">
-                    <div className="hiddenItemsSmallScreen">
+                    <div className="hiddenItemsSmallScreen flex">
                         {showSideCalender &&
                             <Sidebar />
                         }

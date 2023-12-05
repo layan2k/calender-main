@@ -5,9 +5,6 @@ import { useContext } from 'react';
 import GlobalContext from '../../context/GlobalContext';
 
 
-
-
-
 const MobileMenu = () => {
     const [visible, setVisible] = useState(false);
 
@@ -46,10 +43,10 @@ const MobileMenu = () => {
     return (
         <div className='px-3 py-2 min-h-14 ml-auto '>
             <button
-                className="mobile-menu-button border  focus:outline-none p-1 "
+                className="mobile-menu-button border rounded-md focus:outline-none p-1 px-2"
                 onClick={toggleMenu}
             >
-                <MenuOutlined  style={{ fontSize: '24px' }} />
+                <MenuOutlined style={{ fontSize: '24px' }} />
             </button>
             <Drawer
                 title={`Calender Mode: ${selectedMode}`}
@@ -58,7 +55,6 @@ const MobileMenu = () => {
                 open={visible}
                 onClose={toggleMenu}
                 className="mobile-menu bg-white"
-
             >
                 <Menu items={items} mode="inline" />
             </Drawer>

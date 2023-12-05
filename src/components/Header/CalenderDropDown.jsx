@@ -1,3 +1,7 @@
+/*
+Dropdown component for calender Header with the ability to switch the display mode.
+*/
+
 import { useContext } from "react";
 import { useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
@@ -9,6 +13,7 @@ const CalenderDropDown = () => {
     const { viewCalender, setViewCalender } = useContext(GlobalContext)
     const [selectedMode, setSelectedMode] = useState(viewCalender); // Initialize the selected mode with the default value
 
+    // Dropdown Items
     const items = [
         {
             key: 'Day',
@@ -37,11 +42,12 @@ const CalenderDropDown = () => {
     ];
 
     return (
+        // DropDown
         <Dropdown
             menu={{
                 items,
                 selectable: true,
-                defaultSelectedKeys: [{ viewCalender }]
+                defaultSelectedKeys: [ viewCalender ]
             }}
             className="mr-5 border px-4 py-2 w-36 hiddenItemsSmallScreen"
         >

@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-
+/*
+    Component to help us 15 minute intervals for our Day calender
+*/
 
 const HourDay = ({ hour }) => {
     const changeHourToArray = Object.values(hour)

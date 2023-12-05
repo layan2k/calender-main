@@ -2,8 +2,20 @@ import { useContext } from 'react'
 import { AiOutlineAlignLeft, AiOutlineBook, AiOutlineCheck, AiOutlineClockCircle, AiOutlineClose, AiOutlineDelete, AiOutlineMenu } from 'react-icons/ai'
 import GlobalContext from '../context/GlobalContext'
 import { useState } from 'react'
-const lableClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
 import { TimePicker } from 'antd'
+
+const hexCodes = {
+    "indigo": "#3F00FF",
+    "gray": "#808080",
+    "green": "#00FF00",
+    "blue": "#0000FF",
+    "red": "#FF0000",
+    "purple": "#800080",
+};
+
+const lableClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
+// Convert each label to its corresponding hex code using the map function
+const labelHexCodes = lableClasses.map(label => hexCodes[label]);
 
 const EventModal = () => {
     const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent, setSelectedEvent } = useContext(GlobalContext)
@@ -79,11 +91,11 @@ const EventModal = () => {
                             value={title} onChange={(e) => setTitle(e.target.value)
                             } />
                         {/* Left Clock */}
-                        <span className='text-gray-400'>
+                        <span  className='text-gray-400'>
                             <AiOutlineClockCircle />
                         </span>
                         {/* Date Selected + Time Picker */}
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col gap-3'>
                             <p>{daySelected.format("dddd, MMMM, DD")}</p>
                             <TimePicker
                                 format="HH:mm"
@@ -107,16 +119,16 @@ const EventModal = () => {
                         </span>
                         {/* Labels Container */}
                         <div className="flex gap-x-2">
-                            {lableClasses.map((lblClass, i) => (
-                                <span key={i}
-                                    className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+                            {labelHexCodes.map((lblClass, i) => (
+                                <div key={i}
+                                    className=" w-6  h-4  flex items-center justify-center cursor-pointer"
+                                    style={{ backgroundColor: `${lblClass}` }}
                                     onClick={() => setSelectedLabel(lblClass)}
-                                    title={lblClass}
                                 >
-                                    <span className='text-white text-sm'>
+                                    <span className='text-white text-xs'>
                                         {selectedLabel === lblClass && < AiOutlineCheck />}
                                     </span>
-                                </span>
+                                </div>
                             ))}
                         </div>
                     </div>

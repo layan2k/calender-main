@@ -1,4 +1,7 @@
-import { useState , useContext, useEffect} from "react"
+/*
+Day Calender View Component
+*/
+import { useState, useContext, useEffect } from "react"
 import { getHourBlocks, getQuartoHourBlocks } from "../../util"
 import HourDay from "./HourDay"
 import GlobalContext from "../../context/GlobalContext"
@@ -38,11 +41,6 @@ const DayCalender = () => {
                 {currentStartDate.map((week, ind) => (
                     <div key={ind}>
                         <HourDay hour={week} />
-                        {/* {week.map((hour, idl) => (
-                            <span key={idl}>
-
-                            </span>
-                        ))} */}
                     </div>
                 ))}
             </div>

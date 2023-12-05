@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-    @media only screen and (max-width: 640px){
+    @media only screen and (max-width: 768px){
       .hiddenItemsSmallScreen {
         display: none;
       }
@@ -13,7 +13,7 @@
         justify-content: center;
       }
       body{
-        max-width: 480px;
+        max-width: 768px;
       }
       .controls{
       gap: 5px;
@@ -28,8 +28,24 @@
     .day {
       height: 140px;
     }
+    .mobileScreenView{
+      display: flex;
+    }
     }
 
+    @media only screen and (max-width: 480px) {
+      body{
+        max-width: 480px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      body{
+        max-width: 100vw;
+      }
+      .mobileScreenView{
+        display: none;
+      }
+    }
 
 
 
