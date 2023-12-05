@@ -43,7 +43,7 @@ const CalenderDropDown = () => {
                 selectable: true,
                 defaultSelectedKeys: [{ viewCalender }]
             }}
-            className="mr-5 border px-4 py-2 w-36"
+            className="mr-5 border px-4 py-2 w-36 hiddenItemsSmallScreen"
         >
             <Typography>
                 <Space className="flex items-center justify-between">

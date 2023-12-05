@@ -35,14 +35,14 @@ const EventModal = () => {
     }
 
     return (
-        <div className='h-screen w-full fixed left-0 top-0 flex justify-center items-center z-10'>
+        <div className=' event h-screen w-full fixed md:left-0 top-0 flex justify-center items-center z-10'>
             <form className='bg-white rounded-lg shadow-2xl w-1/4'>
                 {/* Header Top Part Of the Event Model(form) */}
                 <header className='bg-gray-100 px-4 py-2 flex justify-between items-center'>
                     <span className='text-gray-400'>
                         <AiOutlineMenu />
                     </span>
-                    <div>
+                    <div className='flex gap-2'>
                         {selectedEvent && (
                             <span
                                 className='text-gray-400 cursor-pointer'

@@ -7,6 +7,7 @@ import CalenderHeader from './Header/CalenderHeader'
 import Sidebar from './Sidebar/Sidebar'
 import Loading from './Loading'
 import AddButton from './AddButton'
+import MobileMenu from './Header/MobileMenu'
 const DayCalender = lazy(() => import('./Day/DayCalender'))
 const Week = lazy(() => import('./Week/Week'))
 const Month = lazy(() => import('./Month/Month'))
@@ -25,12 +26,21 @@ const MainEntry = () => {
         setCurrentMonth(getMonth(daySelected.month()))
     }, [daySelected])
 
+    const checkScreen = () => {
+        const screenWidth = window.innerWidth
+        return screenWidth <= 480
+    }
+
+    const isSmallScreen = checkScreen();
+
 
     return (
         <React.Fragment>
             {showEventModal && <EventModal />}
             <div className="h-screen flex flex-col relative">
+                {isSmallScreen && <MobileMenu />}
                 <CalenderHeader />
+
                 <div className="flex flex-1 monthCalender">
                     <div className="hiddenItemsSmallScreen">
                         {showSideCalender &&

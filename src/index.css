@@ -1,16 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@screen sm {
-  .hiddenItemsSmallScreen {
-    display: none;
-  }
-}
-@screen lg {
-  .hiddenItemsSmallScreen {
-    display: flex;
-  }
-}
+
+
+    @media only screen and (max-width: 640px){
+      .hiddenItemsSmallScreen {
+        display: none;
+      }
+      .calenderHeaderMenu{
+        padding: 8px 1px;
+        max-width: 480px;
+        justify-content: center;
+      }
+      body{
+        max-width: 480px;
+      }
+      .controls{
+      gap: 5px;
+    }
+    .event{
+      top: none;
+      bottom: none;
+    }
+    .week{
+      font-size: 12px;
+    }
+    .day {
+      height: 140px;
+    }
+    }
+
+
 
 
 /* width */

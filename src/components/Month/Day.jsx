@@ -33,7 +33,7 @@ const Day = ({ day }) => {
     }
 
     return (
-        <div className='border border-gray-200 flex flex-col h-36 DayBox' style={cssstyle}>
+        <div className=' day border border-gray-200 flex flex-col h-36 DayBox' style={cssstyle}>
             <header className='flex flex-col '>
                 {day.format('DD-MM-YY') === dayjs().format('DD-MM-YY') ?
                     <p className='text-left p-2 pb-0 text-base font-medium text-red-600'>Today</p>
