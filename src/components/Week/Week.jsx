@@ -28,7 +28,7 @@ const Week = () => {
 
 
   return (
-    <div className='flex flex-1 animate__backOutLeft animate__backInRight'>
+    <div className='flex flex-1 animate__backOutLeft animate__delay-2s animate__backInRight'>
       <div className='flex flex-col flex-1'>
 
         <div>

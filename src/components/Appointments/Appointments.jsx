@@ -7,7 +7,7 @@ const Appointments = () => {
     const { savedEvents, setShowEventModal, setSelectedEvent } = useContext(GlobalContext);
 
     return (
-        <div className="animate__backOutLeft animate__backInRight flex flex-col w-full">
+        <div className="animate__backOutLeft animate__backInRight animate__delay-2s flex flex-col w-full">
             {!savedEvents?.length && (
                 <Typography.Text className="flex justify-center items-center h-screen text-gray-600 text-bold">
                     Sorry, there are no appointments.

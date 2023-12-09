@@ -16,7 +16,7 @@ const DayCalender = () => {
         setCurrentStartDate(getHourBlocks(daySelected))
         },[daySelected])
     return (
-        <div className="animate__backOutLeft animate__backInRight flex flex-1 overflow-y-scroll mt-0.5">
+        <div className="animate__delay-2s animate__backOutLeft animate__backInRight flex flex-1 overflow-y-scroll mt-0.5">
             {/* left */}
             <div className="">
                 {/*Side Bar With hours  */}
