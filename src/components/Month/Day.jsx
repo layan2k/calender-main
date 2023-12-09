@@ -1,3 +1,7 @@
+/*
+Day component withing our Month Calender
+*/
+
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { useContext, useState, useEffect } from 'react';
@@ -8,7 +12,7 @@ import GlobalContext from '../../context/GlobalContext';
 const Day = ({ day }) => {
 
     const [dayEvents, setDayEvents] = useState([])
-    const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent, daySelected } = useContext(GlobalContext)
+    const { setDaySelected, savedEvents, setSelectedEvent, daySelected,setShowEventModal } = useContext(GlobalContext)
 
     useEffect(() => {
         const events = savedEvents.filter(evt => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY"))
@@ -54,12 +58,17 @@ const Day = ({ day }) => {
             <div className="flex-1 cursor-pointer" onClick={() => {
                 setDaySelected(day)
                 setShowEventModal(true)
+                // setViewCalender("Week")
             }}>
                 {dayEvents.map((evt, idx) => (
                     <div key={idx}
-                        className=" p-1 mr-3 text-gray-500 text-sm rounded mb-1 truncate"
+                        className=" p-1 mr-3 text-white text-sm rounded mb-1 truncate"
                         style={{backgroundColor: evt.label}}
-                        onClick={()=> setSelectedEvent(evt)}
+                        onClick={() => {
+                            setSelectedEvent(evt)
+                            setShowEventModal(true)
+                        }
+                        }
                     >
                         {evt.title}
                     </div>

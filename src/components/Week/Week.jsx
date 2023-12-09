@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 import { useEffect } from 'react'
 import Hour from './Hour'
+import dayjs from 'dayjs'
 
 const Week = () => {
   const { daySelected } = useContext(GlobalContext)
@@ -18,6 +19,12 @@ const Week = () => {
     setCurrentMonth(getWeekDays(daySelected))
   }, [daySelected])
 
+  const getSelectedDate = () => {
+    return daySelected.format('ddd D')
+  }
+
+  const selDay = getSelectedDate()
+  const todayDate = dayjs()
 
 
   return (
@@ -28,8 +35,10 @@ const Week = () => {
           {/* Header with Weekdays */}
           <div className="grid grid-cols-7 grid-rows-1 py-4 border border-l-0 border-b-0 shadow-md pl-16">
             {currentMonth.map((day, i) => (
-              <span key={i} className='week text-sm text-center flex items-center justify-center h-4'>
-                {day}
+              <span key={i} className={`week text-sm text-center flex items-center justify-center h-4 ${day === selDay && 'text-blue-800'}`}>
+                {todayDate.format('ddd D') === day && 'Today'}
+                <br/>
+                { day }
               </span>
             ))}
           </div>

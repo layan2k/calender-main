@@ -1,3 +1,7 @@
+/*
+    Calender Header Component. Desktop + Mobile
+
+*/
 import { useContext, useEffect } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 import dayjs from 'dayjs'
@@ -21,7 +25,7 @@ const CalenderHeader = () => {
 
 
     const handleNextPrevMonth = (actionValue) => {
-        if (viewCalender === "Day") {
+        if (viewCalender === "Day" | "Appointment") {
             if (currentDay === 1) setMonthIndex(monthIndex - 1);
             if (currentDay === getDaysInMonth(monthIndex)) setMonthIndex(monthIndex + 1);
             setDaySelected(daySelected.add(actionValue, 'day'))

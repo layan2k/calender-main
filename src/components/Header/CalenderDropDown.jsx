@@ -3,7 +3,6 @@ Dropdown component for calender Header with the ability to switch the display mo
 */
 
 import { useContext } from "react";
-import { useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import { DownOutlined } from '@ant-design/icons'
 import { Dropdown, Space, Typography } from 'antd'
@@ -11,7 +10,6 @@ import { Dropdown, Space, Typography } from 'antd'
 
 const CalenderDropDown = () => {
     const { viewCalender, setViewCalender } = useContext(GlobalContext)
-    const [selectedMode, setSelectedMode] = useState(viewCalender); // Initialize the selected mode with the default value
 
     // Dropdown Items
     const items = [
@@ -20,7 +18,6 @@ const CalenderDropDown = () => {
             label: 'Day',
             onClick: () => {
                 setViewCalender('Day'); // Update global context
-                setSelectedMode('Day'); // Update local state
             }
         },
         {
@@ -28,7 +25,6 @@ const CalenderDropDown = () => {
             label: 'Week',
             onClick: () => {
                 setViewCalender('Week'); // Update global context
-                setSelectedMode('Week'); // Update local state
             }
         },
         {
@@ -36,7 +32,13 @@ const CalenderDropDown = () => {
             label: 'Month',
             onClick: () => {
                 setViewCalender('Month'); // Update global context
-                setSelectedMode('Month'); // Update local state
+            }
+        },
+        {
+            key: 'Appointments',
+            label: 'Appointments',
+            onClick: () => {
+                setViewCalender('Appointments'); // Update global context
             }
         }
     ];
@@ -53,7 +55,7 @@ const CalenderDropDown = () => {
         >
             <Typography>
                 <Space className="flex items-center justify-between">
-                    {selectedMode}
+                    {viewCalender}
                     <DownOutlined />
                 </Space>
             </Typography>

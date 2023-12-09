@@ -1,8 +1,13 @@
+/*
+Our Event Form Model for adding, editing and deleting an event
+*/
+
 import { useContext } from 'react'
 import { AiOutlineAlignLeft, AiOutlineBook, AiOutlineCheck, AiOutlineClockCircle, AiOutlineClose, AiOutlineDelete, AiOutlineMenu } from 'react-icons/ai'
 import GlobalContext from '../context/GlobalContext'
 import { useState } from 'react'
 import { TimePicker } from 'antd'
+import dayjs from 'dayjs'
 
 const hexCodes = {
     "indigo": "#3F00FF",
@@ -22,17 +27,16 @@ const EventModal = () => {
     const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "")
     const [description, setDescription] = useState(selectedEvent != null ? selectedEvent.description : "");
     const [selectedLabel, setSelectedLabel] = useState(
-        selectedEvent != null ? lableClasses.find((lbl) => lbl === selectedEvent.label) :
-            lableClasses[0]
+        selectedEvent != null ? labelHexCodes.find((lbl) => lbl === selectedEvent.label) :
+            labelHexCodes[0]
     );
 
-    const [selectedTime, setSelectedTime] = useState(daySelected.set('hour', 9).set('minute', 15)); // Initial state
+    const [selectedTime, setSelectedTime] = useState(selectedEvent ? selectedEvent.time : daySelected); // Initial state
 
     const handleChange = (time) => {
         setSelectedTime(time);
+        console.log(time)
     };
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -55,8 +59,8 @@ const EventModal = () => {
     }
 
     return (
-        <div className=' event h-screen w-full fixed md:left-0 top-0 flex justify-center items-center z-10'>
-            <form className='bg-white rounded-lg shadow-2xl w-1/4'>
+        <div className='event h-screen w-full fixed md:left-0 top-0 flex justify-center items-center z-10'>
+            <form className='bg-white rounded-lg shadow-2xl md:w-1/4 w-full'>
                 {/* Header Top Part Of the Event Model(form) */}
                 <header className='bg-gray-100 px-4 py-2 flex justify-between items-center'>
                     <span className='text-gray-400'>
@@ -108,8 +112,12 @@ const EventModal = () => {
                             <TimePicker
                                 format="HH:mm"
                                 minuteStep={15}
-                                value={selectedTime}
-                                onChange={handleChange}
+                                value={dayjs(selectedTime)}
+                                onSelect={handleChange}
+                                okButtonProps={{
+                                    className: 'my-custom-ok-button',
+                                }}
+                                style={{ width: '100%' }}
                             />
                         </div>
                         <span className='text-gray-400'>
@@ -144,8 +152,8 @@ const EventModal = () => {
                     </div>
                 </div>
                 {/* The bottom part of our Event Model(form) */}
-                <footer className='flex justify-end w-100 border-t p-3 mt-5'>
-                    <button type='submit' className='bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white' onClick={handleSubmit}>
+                <footer className='flex justify-end md:w-full border-t p-3 mt-5'>
+                    <button type='submit' className={`${title && description ? "bg-blue-100 hover:bg-blue-600" : "bg-blue-500 cursor-not-allowed"}  px-6 py-2 rounded text-white`} disabled={title && description ? false : true} onClick={(e) => handleSubmit(e)}>
                         Save
                     </button>
                 </footer>
