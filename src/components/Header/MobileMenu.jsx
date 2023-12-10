@@ -37,6 +37,14 @@ const MobileMenu = () => {
                 setViewCalender('Month'); // Update global context
                 setSelectedMode('Month'); // Update local state
             }
+        },
+                {
+            key: 'Appointments',
+            label: 'Appointments',
+            onClick: () => {
+                setViewCalender('Appointments'); // Update global context
+                setSelectedMode('Appointments'); // Update local state
+            }
         }
     ];
 
