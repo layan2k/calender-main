@@ -25,7 +25,7 @@ const CalenderHeader = () => {
 
 
     const handleNextPrevMonth = (actionValue) => {
-        if (viewCalender === "Day" || viewCalender === "Appointment") {
+        if (viewCalender === "Day" || viewCalender === "Appointments") {
             if (currentDay === 1) setMonthIndex(monthIndex - 1);
             if (currentDay === getDaysInMonth(monthIndex)) setMonthIndex(monthIndex + 1);
             setDaySelected(daySelected.add(actionValue, 'day'))
