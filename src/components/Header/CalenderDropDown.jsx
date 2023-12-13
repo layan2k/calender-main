@@ -44,7 +44,11 @@ const CalenderDropDown = () => {
     ];
 
     return (
-        // DropDown
+        /*
+        AntD Dropdown that takes in array of objects
+        https://ant.design/components/dropdown
+        https://ant.design/components/typography
+        */
         <Dropdown
             menu={{
                 items,

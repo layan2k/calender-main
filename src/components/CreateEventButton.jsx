@@ -1,3 +1,4 @@
+// Unused
 import { useContext } from "react"
 import GlobalContext from "../context/GlobalContext"
 

@@ -1,3 +1,8 @@
+/*
+Month View Calender Component
+*/
+
+// Imports
 import PropTypes from 'prop-types';
 import Day from "./Day"
 import React from 'react';
@@ -5,7 +10,9 @@ import React from 'react';
 
 const Month = ({ month }) => {
     return (
+        // Month Component Main Entry
         <div className='flex flex-col flex-1 animate__backOutLeft animate__backInRight animate__delay-2s'>
+            {/* Month Calender Header with Dates */}
             <div className="grid grid-cols-7 grid-rows-1 py-4 border border-b-0 shadow-md">
                 {month[0].map((day, i) => (
                     <span key={i} className='text-sm text-center flex items-center justify-center h-4'>
@@ -13,6 +20,8 @@ const Month = ({ month }) => {
                     </span>
                 ))}
             </div>
+
+                    {/* Month View Days */}
             <div className='overflow-y-scroll'>
                 <div className="flex-1 grid grid-cols-7 grid-rows-5 ">
                     {month.map((row, i) => (

@@ -1,5 +1,7 @@
 /*
 Our Event Form Model for adding, editing and deleting an event
+AntD Components used
+TimePicker - https://ant.design/components/time-picker
 */
 
 import { useContext } from 'react'
@@ -9,6 +11,7 @@ import { useState } from 'react'
 import { TimePicker } from 'antd'
 import dayjs from 'dayjs'
 
+// Color hexCodes
 const hexCodes = {
     "indigo": "#3F00FF",
     "gray": "#808080",
@@ -33,11 +36,12 @@ const EventModal = () => {
 
     const [selectedTime, setSelectedTime] = useState(selectedEvent ? selectedEvent.time : daySelected); // Initial state
 
+    // Sets the time from the TimePicker
     const handleChange = (time) => {
         setSelectedTime(time);
-        console.log(time)
     };
 
+    // Handles out form input and dispatches the event information into our context
     const handleSubmit = (e) => {
         e.preventDefault()
         const calenderEvent = {

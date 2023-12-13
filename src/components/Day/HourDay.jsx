@@ -2,6 +2,8 @@
 /*
     Component to help us 15 minute intervals for our Day calender
 */
+
+// Imports
 import dayjs from "dayjs";
 import { useContext, useState, useEffect } from "react"
 import GlobalContext from "../../context/GlobalContext";
@@ -10,10 +12,12 @@ const HourDay = ({ hour }) => {
     const { setDaySelected, setSelectedEvent, savedEvents, setShowEventModal } = useContext(GlobalContext)
     const [localEvents, setLocalEvents] = useState(savedEvents);
 
+    // Rerender events if event changes
     useEffect(() => {
         setLocalEvents(savedEvents)
     }, [savedEvents])
 
+    // Change Object to Arrays
     const changeHourToArray = Object.values(hour)
     return (
         <div className='border border-gray-200 border-r-0 border-l-0 grid grid-cols-1 grid-rows-4 h-24' style={{ "background": "#fdfdfd" }}>
@@ -26,6 +30,7 @@ const HourDay = ({ hour }) => {
                         setShowEventModal(true)
                     }}
                 >
+                    {/* Renders Event if there are any */}
                     {localEvents.filter((item) => dayjs(item.time).format("DD-MM-YYYY HH:mm") === quarter).map((evt, idx) => (
                         <div key={idx}
                             className=" p-1 mr-3 text-white text-sm rounded mb-1 truncate"

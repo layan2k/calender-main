@@ -8,11 +8,13 @@ import GlobalContext from '../../context/GlobalContext';
 const MobileMenu = () => {
     const [visible, setVisible] = useState(false);
 
+    // Toggles our Menu to come into sight
     const toggleMenu = () => setVisible(!visible);
 
     const { viewCalender, setViewCalender } = useContext(GlobalContext)
     const [selectedMode, setSelectedMode] = useState(viewCalender);
 
+    // Items for Our Mobile Menu
     const items = [
         {
             key: 'Day',
@@ -56,6 +58,7 @@ const MobileMenu = () => {
             >
                 <MenuOutlined style={{ fontSize: '24px' }} />
             </button>
+            {/* AntD Drawer https://ant.design/components/drawer */}
             <Drawer
                 title={`Calender Mode: ${selectedMode}`}
                 placement="right"
@@ -64,6 +67,9 @@ const MobileMenu = () => {
                 onClose={toggleMenu}
                 className="mobile-menu bg-white"
             >
+                {/*AntD Menu Items, takes ArrayOfObjts as an input.
+                Equivalent to item.map()
+                https://ant.design/components/menu */}
                 <Menu items={items} mode="inline" />
             </Drawer>
         </div>

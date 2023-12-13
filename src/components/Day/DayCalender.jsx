@@ -11,10 +11,13 @@ const DayCalender = () => {
     const {daySelected } = useContext(GlobalContext)
     const [currentHours, setCurrentHours] = useState(getQuartoHourBlocks())
     const [currentStartDate, setCurrentStartDate] = useState(getHourBlocks())
+
+    // Updates Hours when our Global Day State changes
     useEffect(() => {
         setCurrentHours(getQuartoHourBlocks(daySelected))
         setCurrentStartDate(getHourBlocks(daySelected))
-        },[daySelected])
+    }, [daySelected])
+
     return (
         <div className="animate__delay-2s animate__backOutLeft animate__backInRight flex flex-1 overflow-y-scroll mt-0.5">
             {/* left */}

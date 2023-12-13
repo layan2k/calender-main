@@ -2,6 +2,8 @@
 import { useState, useEffect, useReducer } from "react"
 import GlobalContext from "./GlobalContext"
 import dayjs from "dayjs";
+
+// Context Reducer
 const savedEventsReducer = (state, { type, payload }) => {
     switch (type) {
         case 'push':
@@ -15,11 +17,14 @@ const savedEventsReducer = (state, { type, payload }) => {
     }
 }
 
+// Checks If there are events
 const initEvents = () => {
     const storageEvents = localStorage.getItem('savedEvents')
     const parsedEvents = storageEvents ? JSON.parse(storageEvents) : []
     return parsedEvents
 }
+
+// Sets-up Our current calender to last view if it exists, Defaults to Day calender
 const initView = () => {
     const storageView = localStorage.getItem('calenderView')
     return storageView ? JSON.parse(storageView) : 'Day'

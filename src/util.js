@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 dayjs.extend(isSameOrBefore);
 
-
+// Returns a 2D Array of a Day and DatesS
 export const getMonth = (month = dayjs().month()) => {
     month = Math.floor(month)
     const year = dayjs().year()
@@ -115,7 +115,7 @@ export function getHourBlocks(selectedDate = dayjs().startOf('day')) {
     return hoursArray;
 }
 
-
+// Get Current Month Index given a date as an input
 export const getWeekOfMonth = (selectedDate) => {
     const startOfMonth = selectedDate.startOf('month');
     const diffInDays = selectedDate.diff(startOfMonth, 'day');
@@ -137,7 +137,8 @@ export const getFirstAndLastDay = (selectedDate) => {
     return { firstDayOfWeek, lastDayOfWeek };
 }
 
-export const getWeekDays =(date = dayjs()) => {
+// Get The days in a week given the Date as an input
+export const getWeekDays = (date = dayjs()) => {
     const selectedDate = dayjs(date);
     const firstDayOfWeek = selectedDate.startOf('week');
     const lastDayOfWeek = selectedDate.endOf('week');

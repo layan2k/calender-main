@@ -2,6 +2,8 @@
     Calender Header Component. Desktop + Mobile
 
 */
+
+// Imports
 import { useContext, useEffect } from 'react'
 import GlobalContext from '../../context/GlobalContext'
 import dayjs from 'dayjs'
@@ -17,13 +19,14 @@ const CalenderHeader = () => {
     const [searchValue, setSearchValue] = useState("")
     const [currentDay, setCurrentDay] = useState(daySelected.date())
 
+    // Returns amount of days in a Month given the Month Index 0-11
     const getDaysInMonth = (monthIndex) => {
         const currentSelectedYear = daySelected.format('YYYY')
         const date = dayjs(`${currentSelectedYear}-${monthIndex}-01`);
         return date.daysInMonth();
     };
 
-
+    // Handles our Date shift Depending on the Calender Mode.
     const handleNextPrevMonth = (actionValue) => {
         if (viewCalender === "Day" || viewCalender === "Appointments") {
             if (currentDay === 1) setMonthIndex(monthIndex - 1);
@@ -38,28 +41,37 @@ const CalenderHeader = () => {
         }
     }
 
+    // Resets our calender to the Current Date
     const handleReset = () => {
         setMonthIndex(monthIndex === dayjs().month() ? monthIndex + Math.random() : dayjs().month())
         setDaySelected(dayjs())
     }
 
+    // Toggles our Side Bar with Calender and Jump Controls
     const handleSideCalender = () => {
         setShowSideCalender(!showSideCalender)
     }
+
+    // Rerender when SiderBar Calender Mode Changes
     useEffect(() => {
     }, [showSideCalender])
 
+    // Updates Our local date if global Date changes
     useEffect(() => {
         setCurrentDay(daySelected.date())
     }, [daySelected])
 
+    // Makes sure that our month is synced with our dayselected
     useEffect(() => {
+        // Check if Monthindex id different from our global state
+        // Change to current if not.
         if (monthIndex !== daySelected.month()) {
             setMonthIndex(daySelected.month())
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [daySelected]);
 
+        // Gets the First and last of the week given a date Input
     const WeekDates =  getFirstAndLastDay(daySelected);
 
 
@@ -108,7 +120,7 @@ const CalenderHeader = () => {
                 </Button>
             </div>
 
-
+                {/*  Right Container with our Setting , Notification Icon and  Searchbox*/}
             <div className=" hiddenItemsSmallScreen flex justify-center items-center gap-4 text-3xl">
                 <div className=""><SettingOutlined /> </div>
                 <div className=""><AiOutlineBell /></div>
